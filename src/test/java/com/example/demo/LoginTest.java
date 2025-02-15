@@ -22,30 +22,34 @@ public class LoginTest {
     }
 
     @Test
-    void testValidLogin() {
+    void testValidLogin() throws InterruptedException {
         WebElement usernameField = driver.findElement(By.name("username"));
         WebElement passwordField = driver.findElement(By.name("password"));
         WebElement loginButton = driver.findElement(By.tagName("button"));
 
         usernameField.sendKeys("admin");
         passwordField.sendKeys("password");
+        Thread.sleep(1000);
         loginButton.click();
 
         WebElement successMessage = driver.findElement(By.tagName("h2"));
+        Thread.sleep(1000);
         assertEquals("Login Successful", successMessage.getText());
     }
 
     @Test
-    void testInvalidLogin() {
+    void testInvalidLogin() throws InterruptedException {
         WebElement usernameField = driver.findElement(By.name("username"));
         WebElement passwordField = driver.findElement(By.name("password"));
         WebElement loginButton = driver.findElement(By.tagName("button"));
 
         usernameField.sendKeys("wrongUser");
         passwordField.sendKeys("wrongPass");
+        Thread.sleep(1000);
         loginButton.click();
 
         WebElement errorMessage = driver.findElement(By.tagName("p"));
+        Thread.sleep(1000);
         assertEquals("Invalid credentials!", errorMessage.getText());
     }
 
